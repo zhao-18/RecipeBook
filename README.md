@@ -7,8 +7,8 @@
 
  Once you have Lualatex, you can compile by running compile.ps1. You can run by right click -> Run with PowerShell.
 
-# Adding more recipe
- To add more recipe, you can use the Template.tex that has minimum set of commands to make a recipe.
+# Adding more recipes
+ To add more recipes, you can use the Template.tex that has minimum set of commands to make a recipe.
  ```
 \recipe{
   % Recipe Title comes here
@@ -30,6 +30,35 @@
 % It will need a empty line before to be a new step.
 \end{step}
  ```
+
+To express fractions, you can use following pre-made commands :
+```
+% 1/2
+$\ihalf$
+
+% 3/4
+$\iiiquarter$
+
+% 2/3
+$\iithirds$
+
+% 1/3
+$\ithird$
+
+% 1/4
+$\iquarter$
+
+% 1/8
+$\ieight$
+
+% 1/16
+$\isixteen$
+```
+or to make custom fraction :
+```
+$\frac{numerator}{denominator}$
+```
+
  Once you are done making a new recipe, put in Recipes folder and add
 ```
 \import{Recipes/}{[NewRecipe].tex}
