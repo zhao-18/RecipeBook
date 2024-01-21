@@ -1,0 +1,97 @@
+%% Add after the wrapping text
+\def\wrapfill{
+    \par
+  \ifx\parshape\WF@fudgeparshape
+    \nobreak
+    \ifnum\c@WF@wrappedlines>\@ne
+      \advance\c@WF@wrappedlines\m@ne
+      \vskip\c@WF@wrappedlines\baselineskip
+      \global\c@WF@wrappedlines\z@
+    \fi
+    \allowbreak
+    \WF@finale
+  \fi
+}
+
+
+%% Used for the headnote and in \showit
+%% If the text is small it is placed on one line;
+%% otherwise it is put into a raggedright paragraph.
+\long\def\testoneline#1{%
+  \sbox\@tempboxa{#1}%
+  \ifdim \wd\@tempboxa <0.75\linewidth
+        \begingroup
+            \itshape
+            #1\par
+        \endgroup
+  \else
+    \parbox{0.75\linewidth}{\raggedright\itshape#1}%
+    \par
+  \fi
+}
+
+%% #1 Title of recipe; #2 [Initial instructions]
+\NewDocumentCommand{\recipe}{m o}{%
+    \setcounter{stepnum}{0}%
+    \newpage
+    \lhead{}%
+    \chead{}%
+    \rhead{}%
+    \lfoot{}%
+    \rfoot{}%
+    \phantomsection
+    \addcontentsline{toc}{subsection}{#1}%
+    \subsection*{#1}%
+    \IfNoValueF{#2}{\noindent\emph{#2}\par\medskip}
+}
+
+%% Temperature
+\newcommand{\temp}[1]{#1°F}
+
+%% Control highlighting ingredients
+%% Ingredient first, then measure; empty measure and/or unit = " . "
+\def\ucit#1{\uppercase{#1}}
+\begingroup
+    \lccode`~=`\^^M
+    \lowercase{%
+\endgroup
+    %% *=column break; amount<space>ingredient
+    \NewDocumentCommand{\ing}{u{ } u{ } u{~}}{% %% basically the same as: \def\ing#1 #2~{% requires xparse
+        \noindent
+        \if#1#2% Is a heading, a non-ingredient, in the ingredients block
+            \emph{#3}~ % A heading
+        \else % Amounts containing spaces <1 teaspoon> have to use '~' <1~teaspoon>
+            \textbf{\ucit#3, }#1\if.#2\else\ #2\fi~ %
+        \fi
+    }%
+}%
+
+\NewDocumentEnvironment{step}{}{%
+    \parindent0pt
+    \leftskip0pt
+    \begin{minipage}{\textwidth}
+        \begin{wrapfigure}{r}{0pt}
+            \kern-0.5em
+            \vrule width 1pt\enskip
+            \begin{minipage}{0.5\textwidth}
+                \leftskip=1.5em
+                \parindent=-1.5em
+                \parskip=0.25em
+                \obeylines
+                    \everypar={\ing}
+}{%
+        \wrapfill
+    \end{minipage}
+    \medskip
+}
+
+%Recipe steps on left side
+\NewDocumentCommand{\method}{}{%
+            \end{minipage}
+        \end{wrapfigure}
+        \rightskip0pt plus 2em
+        \parskip1.0em
+        \everypar={\llap{\stepcounter{stepnum}\hbox to 1.5em{\thestepnum.\hfill}}}
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{\centering}

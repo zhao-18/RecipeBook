@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{etoc} %For local table of content
+\usepackage{titlesec} %To modify "section"
+\usepackage{parskip} %Space between paragraphs
+\usepackage[colorlinks=true, allcolors=blue]{hyperref} %For adding link if necessary
+\usepackage{fancyhdr,wrapfig,graphicx,xparse,fontspec}
+\usepackage{import}%Import recipes
+\usepackage[
+    papersize={5.5in,8.5in},
+    margin=0.75in,
+    top=0.75in,
+    bottom=0.75in
+    ]{geometry}
+
+\newcounter{stepnum}
+
+\makeatletter
+
+\input{commands.tex}
+\input{measurements.tex}
+
+\setmainfont{STIX Two Text}
+
+\pagestyle{plain}
+\setlength{\intextsep}{0pt}
+
+\title{MugMeal Manual for College}
+\author{Mira S. \& Yuecheng Z.}
+\setcounter{tocdepth}{1} %How much should table of contents show
+
+
+\begin{document}
+\maketitle
+\newpage
+\null{}
+\vspace{5em}
+\begin{LARGE} 
+\hspace{3em}To Luke
+\end{LARGE}
+\newpage
+\tableofcontents
+\setcounter{tocdepth}{2}
+
+
+
+\newpage
+\section{Dessert} 
+\localtableofcontents
+\import{Recipes/}{Brownie.tex}
+\import{Recipes/}{BananaBread.tex}
+\import{Recipes/}{VanillaCake.tex}
+\import{Recipes/}{ChocolateCake.tex}
+\import{Recipes/}{SpongeCake.tex}
+\import{Recipes/}{Churro.tex}
+\import{Recipes/}{RiceCrispy.tex}
+\import{Recipes/}{BreadButterPudding.tex}
+
+
+
+\newpage
+\section{Meal} 
+\localtableofcontents
+\import{Recipes/}{FettucciniAlfredo.tex}
+\import{Recipes/}{PotatoSoup.tex}
+\import{Recipes/}{MacnCheese.tex}
+\import{Recipes/}{Ramen.tex}
+\import{Recipes/}{Pizza.tex}
+\import{Recipes/}{Quiche.tex}
+\import{Recipes/}{Shakshuka.tex}
+\import{Recipes/}{SpaghettiOs.tex}
+\import{Recipes/}{CheeseBroccoliRice.tex}
+\import{Recipes/}{ChickenPie.tex}
+\import{Recipes/}{Lasagna.tex}
+
+
+
+\newpage
+\section {Breakfast}
+\localtableofcontents
+\import{Recipes/}{EggMuffin.tex}
+\import{Recipes/}{BreakfastBurrito.tex}
+\import{Recipes/}{FrenchToast.tex}
+\import{Recipes/}{PopTart.tex}
+\import{Recipes/}{CinnamonRoll.tex}
+
+
+\end{document}
