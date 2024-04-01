@@ -73,3 +73,4 @@ $\frac{numerator}{denominator}$
  ```
  Make sure to compile once you are done editing everything.
  If you have any new recipe, please send it to Mira or John.
+ If you do not feel like installing or compiling, you can let me know and we can compile for you.
