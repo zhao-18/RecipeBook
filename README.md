@@ -1,5 +1,5 @@
 # RecipeBook
- Recipe book about MugMeals for my dear brother in law Luke.
+ Recipe book about MugMeals for Luke.
 
 # Compiling
  You will need to have Lualatex installed on your machine in order to compile. (On my machine, I installed TeXLive and Lualatex came with it.)
